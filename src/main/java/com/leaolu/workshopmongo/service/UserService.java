@@ -1,12 +1,14 @@
 package com.leaolu.workshopmongo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.leaolu.workshopmongo.domain.User;
 import com.leaolu.workshopmongo.repositories.UserRepository;
+import com.leaolu.workshopmongo.service.exception.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -16,5 +18,10 @@ public class UserService {
 	
 	public List<User> findAll(){
 		return repository.findAll();
+	}
+	
+	public User findById(String id){
+		Optional<User> user = repository.findById(id);
+		return user.orElseThrow(() -> new ObjectNotFoundException(id));
 	}
 }
