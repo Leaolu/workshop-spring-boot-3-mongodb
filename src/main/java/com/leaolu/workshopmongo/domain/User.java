@@ -1,9 +1,12 @@
 package com.leaolu.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -15,6 +18,11 @@ public class User implements Serializable{
 	
 	private String name;
 	private String email;
+	
+	//this attribute refers to another collection
+	//lazy = true means that when getting an user, the posts area do a lazy loading, getting the post if they are accessed
+	@DBRef(lazy = true)
+	private List<Post> posts = new ArrayList<>();
 	
 	//Constructor
 	public User() {
@@ -43,6 +51,9 @@ public class User implements Serializable{
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public List<Post> getPosts() {
+		return posts;
 	}
 	
 	//hashCode and equals using just the Id to tell Users apart
