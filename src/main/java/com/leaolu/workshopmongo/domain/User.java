@@ -9,6 +9,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+//Document of an User that has Id, name, email and a list of posts as attributes
+
 @Document
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -20,7 +22,7 @@ public class User implements Serializable{
 	private String email;
 	
 	//this attribute refers to another collection
-	//lazy = true means that when getting an user, the posts area do a lazy loading, getting the post if they are accessed
+	//lazy = true means that when getting an user, the posts area do a lazy loading, getting the post if they are accessed manually
 	@DBRef(lazy = true)
 	private List<Post> posts = new ArrayList<>();
 	

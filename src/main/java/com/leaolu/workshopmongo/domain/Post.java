@@ -12,6 +12,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.leaolu.workshopmongo.DTO.AuthorDTO;
 import com.leaolu.workshopmongo.DTO.CommentDTO;
 
+//Document Post, that have Id, date, title, body, author and a list of comments as attributes
+
 @Document
 public class Post implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -26,6 +28,7 @@ public class Post implements Serializable{
 	
 	private List<CommentDTO> comments = new ArrayList<>();
 	
+	//Constructors
 	public Post() {
 	}
 
@@ -36,7 +39,9 @@ public class Post implements Serializable{
 		this.body = body;
 		this.author = author;
 	}
-
+	
+	
+	//getters and setters
 	public String getId() {
 		return id;
 	}
@@ -90,7 +95,8 @@ public class Post implements Serializable{
 	public List<CommentDTO> getComments() {
 		return comments;
 	}
-
+	
+	//Hashcode and equals using just the Id to tell posts apart
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

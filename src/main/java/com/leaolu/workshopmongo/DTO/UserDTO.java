@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import com.leaolu.workshopmongo.domain.User;
 
+//DTO = Data Transfer Object
+//DTO of an User, having Id, name and email as it attributes
+
 public class UserDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -11,6 +14,7 @@ public class UserDTO implements Serializable{
 	private String name;
 	private String email;
 	
+	//Constructors
 	public UserDTO(){
 	}
 	
@@ -19,7 +23,8 @@ public class UserDTO implements Serializable{
 		name = obj.getName();
 		email = obj.getEmail();
 	}
-
+	
+	//getters and setters
 	public String getId() {
 		return id;
 	}
@@ -44,5 +49,5 @@ public class UserDTO implements Serializable{
 		this.email = email;
 	}
 	
-	
+	//doesn't have hashcode or equals because the Class User already has them
 }

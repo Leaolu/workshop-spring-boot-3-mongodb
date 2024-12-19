@@ -3,6 +3,8 @@ package com.leaolu.workshopmongo.resources.exception;
 import java.io.Serializable;
 import java.time.Instant;
 
+//Standard error class that have timeStamp, status, error, message and path as its attributes
+
 public class StandardError implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -12,6 +14,7 @@ public class StandardError implements Serializable{
 	private String message;
 	private String path;
 	
+	//Constructors
 	public StandardError() {
 	}
 
@@ -22,7 +25,8 @@ public class StandardError implements Serializable{
 		this.message = message;
 		this.path = path;
 	}
-
+	
+	//Getters and Setters methods
 	public Instant getTimeStamp() {
 		return timeStamp;
 	}
@@ -63,5 +67,7 @@ public class StandardError implements Serializable{
 		this.path = path;
 	}
 	
+	
+	//doesn't have hashcode or equals because there is no point of comparing errors
 	
 }

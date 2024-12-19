@@ -14,6 +14,8 @@ import com.leaolu.workshopmongo.domain.User;
 import com.leaolu.workshopmongo.repositories.PostRepository;
 import com.leaolu.workshopmongo.repositories.UserRepository;
 
+//CommandLineRunner, that runs every time the application is running
+
 @Configuration
 public class Instantiation implements CommandLineRunner{
 	
@@ -28,15 +30,18 @@ public class Instantiation implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
+		//delete all the data priorly used so the same Documents doesn't stack and gets the data base crowded
 		userRepository.deleteAll();
 		postRepository.deleteAll();
 		
+		//adds 3 Users and save them
 		User maria = new User(null, "Maria Brown", "maria@gmail.com");
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 		
+		//adds 2 posts and 3 comments, assign the first two comments to the first post and the third comment to the second post and save the posts
 		Post post1 = new Post(null, sdf.parse("21/03/2018"), "partiu viagem", "vou viajar para sp, abracos", new AuthorDTO(maria));
 		Post post2 = new Post(null, sdf.parse("25/06/2019"), "estou triste", "vou parar de publicar aqui, valeu", new AuthorDTO(bob));
 		
@@ -49,6 +54,7 @@ public class Instantiation implements CommandLineRunner{
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 		
+		//assign both posts the User maria and save this User
 		maria.getPosts().addAll(Arrays.asList(post1, post2));
 		
 		userRepository.save(maria);

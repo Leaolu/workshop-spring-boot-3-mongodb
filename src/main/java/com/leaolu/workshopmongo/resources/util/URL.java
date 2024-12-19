@@ -16,7 +16,8 @@ public class URL {
 			return "";
 		}
 	}
-	
+	//converts the String into Date, if the String isn't in the SimpleDateFormat pattern, it will result as a ParseException, 
+	//so it will return the defaultValue, that is the second parameter
 	public static Date convertDate(String textDate, Date defaultValue) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
